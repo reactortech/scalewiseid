@@ -1,6 +1,29 @@
 export type Lang = "id" | "en";
 
-export const dict = {
+type Stat = { v: number; suf?: string; pre?: string; l: string; full?: string };
+type Service = { t: string; b: string; badge?: string; soon?: boolean };
+type Metric = { k: string; v: string };
+type CaseItem = { platform: string; industry: string; metrics: Metric[]; body: string };
+type Step = { t: string; b: string };
+type Member = { r: string; d: string };
+
+type Dict = {
+  nav: { services: string; cases: string; how: string; team: string; contact: string; cta: string };
+  hero: { badge: string; line1: string; line2: string; sub: string; cta1: string; cta2: string; trusted: string };
+  stats: Stat[];
+  problem: { eyebrow: string; headline1: string; headline2: string; c1t: string; c1b: string; c2t: string; c2b: string; close: string };
+  cases: { eyebrow: string; headline1: string; headline2: string; items: CaseItem[] };
+  how: { eyebrow: string; headline1: string; headline2: string; steps: Step[] };
+  services: { eyebrow: string; headline1: string; headline2: string; items: Service[] };
+  team: { eyebrow: string; headline1: string; headline2: string; members: Member[] };
+  contact: {
+    headline1: string; headline2: string; sub: string;
+    f: { name: string; email: string; wa: string; brand: string; platform: string; platformOpts: string[]; challenge: string; submit: string; success: string };
+  };
+  footer: { tagline: string; nav: string; contact: string; office: string };
+};
+
+export const dict: Record<Lang, Dict> = {
   id: {
     nav: { services: "Layanan", cases: "Studi Kasus", how: "Cara Kerja", team: "Tim", contact: "Kontak", cta: "Audit Gratis" },
     hero: {
@@ -243,6 +266,6 @@ export const dict = {
       nav: "Navigation", contact: "Contact", office: "Head Office",
     },
   },
-} as const;
+};
 
 export const clients = ["Joylab", "Kenmaster", "Beatrice Clothing", "3Mongkis", "Boga Group", "Nama Kids", "Environesia", "Lucienne"];
