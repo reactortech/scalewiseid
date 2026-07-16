@@ -4,6 +4,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #181716;
+  --color-navy: #1B2559;
+  --color-navy-hover: #232F6B;
+  --color-navy-muted: #44508C;
+  --color-navy-soft: #8A93C2;
+  --color-gold: #F5B90C;
+  --color-gold-tint: #F8CB4C;
+  --color-gold-soft: #FBDD8C;
+  --color-body: #FFFFFF;
+  --color-body-muted: #B9BDCB;
+}
+
 /*
  * Design system definition.
  *
