@@ -82,11 +82,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Scalewise.id — AI-Powered Growth & Programmatic Ads Agency" },
       { name: "description", content: "Scalewise is an AI-powered growth partner for FMCG & consumer brands in Indonesia. We close the gap between ad spend and real revenue growth." },
       { name: "author", content: "Scalewise.id" },
-      { property: "og:title", content: "Scalewise.id — AI-Powered Growth & Programmatic Ads" },
-      { property: "og:description", content: "Growth Strategist & Programmatic Ads for FMCG and consumer brands. Strategy, data, execution — engineered for profit." },
+      { property: "og:title", content: "Scalewise.id — AI-Powered Growth & Programmatic Ads Agency" },
+      { property: "og:description", content: "Scalewise is an AI-powered growth partner for FMCG & consumer brands in Indonesia. We close the gap between ad spend and real revenue growth." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Scalewise.id — AI-Powered Growth & Programmatic Ads Agency" },
+      { name: "twitter:description", content: "Scalewise is an AI-powered growth partner for FMCG & consumer brands in Indonesia. We close the gap between ad spend and real revenue growth." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/DBxU1G4lPacMnRkzm4oJ35wxWxq1/social-images/social-1784226735390-Cuplikan_layar_2026-07-17_013019.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/DBxU1G4lPacMnRkzm4oJ35wxWxq1/social-images/social-1784226735390-Cuplikan_layar_2026-07-17_013019.webp" },
     ],
     links: [
       {
