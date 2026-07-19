@@ -39,7 +39,6 @@ export function Navbar() {
     { id: "services", label: t.nav.services },
     { id: "cases", label: t.nav.cases },
     { id: "how", label: t.nav.how },
-    { id: "team", label: t.nav.team },
     { id: "contact", label: t.nav.contact },
   ];
 

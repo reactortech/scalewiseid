@@ -38,6 +38,47 @@ function AuditPage() {
   const t = d.audit;
   const f = d.contact.f;
   const [sent, setSent] = useState(false);
+  const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [brand, setBrand] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [challenge, setChallenge] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const SHEETS_WEBHOOK_URL =
+    "https://script.google.com/macros/s/AKfycbxlttUOtWej2chOYX7Zpg_K-zZdOHN3ciPaElWkR1Cmp1hyo7SXyKHvgdaAthqOstjZ/exec";
+
+  const handleSubmit = async () => {
+    setError("");
+    if (!nama.trim() || !email.trim() || !whatsapp.trim() || !brand.trim()) {
+      setError(lang === "id" ? "Mohon lengkapi Nama, Email, WhatsApp, dan Brand." : "Please fill in Name, Email, WhatsApp, and Brand.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await fetch(SHEETS_WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "Full Name": nama,
+          "Email": email,
+          "WhatsApp Number": whatsapp,
+          "Brand Name": brand,
+          "Main ad platform": platform,
+          "Business challenge": challenge,
+        }),
+      });
+    } catch (err) {
+      console.error("Sheets webhook failed", err);
+    }
+    const msg = `Halo Scalewise, saya ${nama} dari ${brand}, saya mau klaim Free Growth Audit.`;
+    window.open(`https://wa.me/6285190945612?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+    setSubmitting(false);
+    setSent(true);
+  };
 
   const scrollForm = () => document.getElementById("audit-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -145,28 +186,35 @@ function AuditPage() {
           <Reveal delay={0.15} className="mt-10">
             {sent ? (
               <div className="rounded-2xl border border-gold/40 bg-gold/10 p-8 text-center">
-                <p className="text-lg font-semibold text-gold">{f.success}</p>
+                <p className="text-lg font-semibold text-gold">
+                  {lang === "id"
+                    ? "Terima kasih! Kami akan menghubungi Anda via WhatsApp."
+                    : "Thank you! We'll reach out to you via WhatsApp."}
+                </p>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-                className="grid gap-4 rounded-2xl border border-white/10 bg-navy/40 p-6 md:p-8"
-              >
+              <div className="grid gap-4 rounded-2xl border border-white/10 bg-navy/40 p-6 md:p-8">
                 <div className="grid gap-4 md:grid-cols-2">
-                  <input required placeholder={f.name + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
-                  <input required type="email" placeholder={f.email + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
-                  <input required placeholder={f.wa + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
-                  <input required placeholder={f.brand + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
+                  <input value={nama} onChange={(e) => setNama(e.target.value)} placeholder={f.name + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
+                  <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={f.email + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
+                  <input value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} placeholder={f.wa + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
+                  <input value={brand} onChange={(e) => setBrand(e.target.value)} placeholder={f.brand + "*"} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
                 </div>
-                <select defaultValue="" className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white focus:border-gold/60 focus:outline-none">
+                <select value={platform} onChange={(e) => setPlatform(e.target.value)} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white focus:border-gold/60 focus:outline-none">
                   <option value="" disabled>{f.platform}</option>
                   {f.platformOpts.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
-                <textarea rows={4} placeholder={f.challenge} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
-                <button type="submit" className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(245,185,12,0.55)]">
-                  {f.submit}
+                <textarea value={challenge} onChange={(e) => setChallenge(e.target.value)} rows={4} placeholder={f.challenge} className="rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-white placeholder:text-body-muted/70 focus:border-gold/60 focus:outline-none" />
+                {error && <p className="text-sm text-red-400">{error}</p>}
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={submitting}
+                  className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(245,185,12,0.55)] disabled:opacity-60"
+                >
+                  {submitting ? (lang === "id" ? "Mengirim..." : "Submitting...") : f.submit}
                 </button>
-              </form>
+              </div>
             )}
           </Reveal>
         </div>

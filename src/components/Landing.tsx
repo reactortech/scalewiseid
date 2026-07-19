@@ -467,7 +467,6 @@ export default function Landing() {
       <Cases lang={lang} />
       <How lang={lang} />
       <Services lang={lang} />
-      <Team lang={lang} />
       <Contact lang={lang} onAudit={goAudit} />
     </>
   );
