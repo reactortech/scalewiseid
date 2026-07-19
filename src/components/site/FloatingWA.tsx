@@ -11,7 +11,7 @@ export function FloatingWA() {
   if (!show) return null;
   return (
     <a
-      href="https://wa.me/62895411181899?text=Halo%20Scalewise%2C%20saya%20mau%20klaim%20Free%20Growth%20Audit"
+      href="https://wa.me/6285190945612?text=Halo%20Scalewise%2C%20saya%20mau%20klaim%20Free%20Growth%20Audit"
       target="_blank"
       rel="noreferrer"
       className="fixed bottom-6 right-6 z-40 grid h-14 w-14 place-items-center rounded-full bg-gold text-ink shadow-[0_0_30px_rgba(245,185,12,0.4)] transition-transform hover:scale-110"
