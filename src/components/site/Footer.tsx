@@ -44,7 +44,6 @@ export function Footer() {
               { id: "services", label: t.nav.services },
               { id: "cases", label: t.nav.cases },
               { id: "how", label: t.nav.how },
-              { id: "team", label: t.nav.team },
               { id: "contact", label: t.nav.contact },
             ].map((l) => (
               <li key={l.id}>
@@ -57,7 +56,7 @@ export function Footer() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-wider text-white">{t.footer.contact}</p>
           <ul className="mt-4 space-y-2 text-sm text-body-muted">
-            <li><a className="hover:text-gold" href="https://wa.me/62895411181899">WhatsApp +62 895-4111-81899</a></li>
+            <li><a className="hover:text-gold" href="https://wa.me/6285190945612">WhatsApp +62 851-9094-5612</a></li>
             <li><a className="hover:text-gold" href="mailto:scalewise.id@gmail.com">scalewise.id@gmail.com</a></li>
             <li><a className="hover:text-gold" href="https://instagram.com/scalewise.id">@scalewise.id</a></li>
             <li><a className="hover:text-gold" href="https://www.scalewise.id">www.scalewise.id</a></li>
