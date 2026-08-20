@@ -24,7 +24,7 @@ export const Route = createFileRoute("/case-study/$slug")({
 });
 
 function CaseStudyPage() {
-  const { slug } = Route.useLoaderData();
+  const { slug } = Route.useLoaderData() as { slug: CaseSlug };
   const imgs = caseImages[slug];
   return <CaseStudyDashboard slug={slug} beforeImage={imgs?.before} afterImage={imgs?.after} />;
 }
