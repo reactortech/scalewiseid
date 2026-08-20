@@ -169,7 +169,7 @@ function BeforeAfterPanel({
           <img
             src={image}
             alt={label}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center p-4 text-center text-xs text-body-muted">
