@@ -3,9 +3,12 @@ import { caseSlugs, type CaseSlug } from "@/lib/i18n";
 import { CaseStudyDashboard } from "@/components/site/CaseStudyDashboard";
 import metaBefore from "@/assets/meta-fashion-before.png.asset.json";
 import metaAfter from "@/assets/meta-fashion-after.png.asset.json";
+import tiktokBefore from "@/assets/tiktok-skincare-before.png.asset.json";
+import tiktokAfter from "@/assets/tiktok-skincare-after.png.asset.json";
 
 const caseImages: Partial<Record<CaseSlug, { before: string; after: string }>> = {
   "meta-fashion": { before: metaBefore.url, after: metaAfter.url },
+  "tiktok-skincare": { before: tiktokBefore.url, after: tiktokAfter.url },
 };
 
 export const Route = createFileRoute("/case-study/$slug")({
