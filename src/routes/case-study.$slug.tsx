@@ -7,11 +7,14 @@ import tiktokBefore from "@/assets/tiktok-skincare-before.png.asset.json";
 import tiktokAfter from "@/assets/tiktok-skincare-after.png.asset.json";
 import googleBefore from "@/assets/google-leadgen-before.png.asset.json";
 import googleAfter from "@/assets/google-leadgen-after.png.asset.json";
+import shopeeBefore from "@/assets/shopee-fashion-before.png.asset.json";
+import shopeeAfter from "@/assets/shopee-fashion-after.png.asset.json";
 
 const caseImages: Partial<Record<CaseSlug, { before: string; after: string }>> = {
   "meta-fashion": { before: metaBefore.url, after: metaAfter.url },
   "tiktok-skincare": { before: tiktokBefore.url, after: tiktokAfter.url },
   "google-ads-leadgen": { before: googleBefore.url, after: googleAfter.url },
+  "shopee-fashion": { before: shopeeBefore.url, after: shopeeAfter.url },
 };
 
 export const Route = createFileRoute("/case-study/$slug")({
