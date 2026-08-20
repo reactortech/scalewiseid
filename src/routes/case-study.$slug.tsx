@@ -1,6 +1,12 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { caseSlugs, type CaseSlug } from "@/lib/i18n";
 import { CaseStudyDashboard } from "@/components/site/CaseStudyDashboard";
+import metaBefore from "@/assets/meta-fashion-before.png.asset.json";
+import metaAfter from "@/assets/meta-fashion-after.png.asset.json";
+
+const caseImages: Partial<Record<CaseSlug, { before: string; after: string }>> = {
+  "meta-fashion": { before: metaBefore.url, after: metaAfter.url },
+};
 
 export const Route = createFileRoute("/case-study/$slug")({
   head: ({ params }) => ({
@@ -19,5 +25,6 @@ export const Route = createFileRoute("/case-study/$slug")({
 
 function CaseStudyPage() {
   const { slug } = Route.useLoaderData();
-  return <CaseStudyDashboard slug={slug} />;
+  const imgs = caseImages[slug];
+  return <CaseStudyDashboard slug={slug} beforeImage={imgs?.before} afterImage={imgs?.after} />;
 }
